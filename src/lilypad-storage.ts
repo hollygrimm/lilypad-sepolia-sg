@@ -1,65 +1,76 @@
-import { BigInt } from "@graphprotocol/graph-ts"
+import { BigInt, Bytes, ByteArray, log, crypto } from "@graphprotocol/graph-ts"
 import {
   LilypadStorage,
   DealStateChange,
   Initialized,
   OwnershipTransferred
 } from "../generated/LilypadStorage/LilypadStorage"
-import { ExampleEntity } from "../generated/schema"
+import { Job, JobHistory } from "../generated/schema"
+
+class JobState {
+  static DEALNEGOTIATING: string = "DealNegotiating";
+  static DEALAGREED: string = "DealAgreed";
+  static RESULTS_SUBMITTED: string = "ResultsSubmitted";
+  static RESULTS_CHECKED: string = "ResultsChecked";
+  static RESULTS_ACCEPTED: string = "ResultsAccepted";
+  static MEDIATION_ACCEPTED: string = "MediationAccepted";
+  static MEDIATION_REJECTED: string = "MediationRejected";
+  static TIMEOUT_AGREE: string = "TimeoutAgree";
+  static TIMEOUT_SUBMIT_RESULTS: string = "TimeoutSubmitResults";
+  static TIMEOUT_JUDGE_RESULTS: string = "TimeoutJudgeResults";
+  static TIMEOUT_MEDIATE_RESULTS: string = "TimeoutMediateResults";
+}
+
+export function getJobState(jobStateInt: number): string {
+  let jobstate = JobState.DEALNEGOTIATING
+
+  if (jobStateInt == 1) {
+    jobstate = JobState.DEALAGREED
+  } else if (jobStateInt == 2) {
+    jobstate = JobState.RESULTS_SUBMITTED
+  } else if (jobStateInt == 3) {
+    jobstate = JobState.RESULTS_CHECKED
+  } else if (jobStateInt == 4) {
+    jobstate = JobState.RESULTS_ACCEPTED
+  } else if (jobStateInt == 5) {
+    jobstate = JobState.MEDIATION_ACCEPTED
+  } else if (jobStateInt == 6) {
+    jobstate = JobState.MEDIATION_REJECTED
+  } else if (jobStateInt == 7) {
+    jobstate = JobState.TIMEOUT_AGREE
+  } else if (jobStateInt == 8) {
+    jobstate = JobState.TIMEOUT_SUBMIT_RESULTS
+  } else if (jobStateInt == 9) {
+    jobstate = JobState.TIMEOUT_JUDGE_RESULTS
+  } else if (jobStateInt == 10) {
+    jobstate = JobState.TIMEOUT_MEDIATE_RESULTS
+  }
+  return jobstate
+}
 
 export function handleDealStateChange(event: DealStateChange): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from)
+  let dealIdBytes = Bytes.fromUTF8(event.params.dealId)
+  let jobIdBytes = Bytes.fromByteArray(crypto.keccak256(dealIdBytes))
+  let job = Job.load(jobIdBytes)
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new ExampleEntity(event.transaction.from)
-
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
+  if (!job) {
+    job = new Job(jobIdBytes)
+    job.dealId = event.params.dealId
+    job.createdAtTimestamp = event.block.timestamp
   }
 
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
+  job.state = getJobState(event.params.state)
 
-  // Entity fields can be set based on event parameters
-  entity.dealId = event.params.dealId
-  entity.state = event.params.state
+  job.save()
+  log.info("DealStateChange: {}", [job.id.toString()])
 
-  // Entities can be written to the store with `.save()`
-  entity.save()
+  log.info("transaction hash: {}", [event.transaction.hash.toHex()])
+  let jobHistory = new JobHistory(event.transaction.hash.toHex())
+  jobHistory.job = job.id
+  jobHistory.timestamp = event.block.timestamp
+  jobHistory.state = getJobState(event.params.state)
+  jobHistory.save()
 
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract.addResult(...)
-  // - contract.agreeJobCreator(...)
-  // - contract.agreeResourceProvider(...)
-  // - contract.ensureDeal(...)
-  // - contract.getAgreement(...)
-  // - contract.getControllerAddress(...)
-  // - contract.getDeal(...)
-  // - contract.getDealsForParty(...)
-  // - contract.getJobCost(...)
-  // - contract.getResult(...)
-  // - contract.getResultsCollateral(...)
-  // - contract.hasDeal(...)
-  // - contract.isState(...)
-  // - contract.owner(...)
 }
 
 export function handleInitialized(event: Initialized): void {}

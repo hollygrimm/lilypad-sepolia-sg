@@ -7,7 +7,7 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { Address } from "@graphprotocol/graph-ts"
-import { ExampleEntity } from "../generated/schema"
+import { Job } from "../generated/schema"
 import { DealStateChange } from "../generated/LilypadStorage/LilypadStorage"
 import { handleDealStateChange } from "../src/lilypad-storage"
 import { createDealStateChangeEvent } from "./lilypad-storage-utils"
@@ -17,8 +17,8 @@ import { createDealStateChangeEvent } from "./lilypad-storage-utils"
 
 describe("Describe entity assertions", () => {
   beforeAll(() => {
-    let dealId = "Example string value"
-    let state = 123
+    let dealId = "QmUYUSt3tDCXM7AChPn7YQUVN1gJzZnXAXfeiaitYdyKL2"
+    let state = 10
     let newDealStateChangeEvent = createDealStateChangeEvent(dealId, state)
     handleDealStateChange(newDealStateChangeEvent)
   })
@@ -27,27 +27,44 @@ describe("Describe entity assertions", () => {
     clearStore()
   })
 
-  // For more test scenarios, see:
-  // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
+  test("Job created and stored", () => {
+    assert.entityCount("Job", 1)
 
-  test("ExampleEntity created and stored", () => {
-    assert.entityCount("ExampleEntity", 1)
-
-    // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "ExampleEntity",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
+      "Job",
+      "0x7a6b066d2022cf1d975a60b9c144d4b1dc9949e7d7f5dd7e88c7ab45adeb5d69",
       "dealId",
-      "Example string value"
+      "QmUYUSt3tDCXM7AChPn7YQUVN1gJzZnXAXfeiaitYdyKL2",
     )
     assert.fieldEquals(
-      "ExampleEntity",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
+      "Job",
+      "0x7a6b066d2022cf1d975a60b9c144d4b1dc9949e7d7f5dd7e88c7ab45adeb5d69",
       "state",
-      "123"
+      "TimeoutMediateResults"
     )
+  })
 
-    // More assert options:
-    // https://thegraph.com/docs/en/developer/matchstick/#asserts
+  test("JobHistory entity is created with the correct values", () => {
+    assert.entityCount("JobHistory", 1)
+    
+    // Here we need to fetch the ID of the created JobHistory entity
+    // Assuming the ID is created the same way as in the `handleDealStateChange` example provided earlier
+    let jobHistoryId = "0xa16081f360e3847006db660bae1c6d1b2e17ec2a" // Replace with actual values used in entity creation
+
+    assert.fieldEquals(
+      "JobHistory",
+      jobHistoryId,
+      "state",
+      "TimeoutMediateResults"
+    )
+    
+    // If your JobHistory stores a reference to the Job entity, you can assert that as well
+    let jobEntityId = "0x7a6b066d2022cf1d975a60b9c144d4b1dc9949e7d7f5dd7e88c7ab45adeb5d69" // Replace with the actual job id expected
+    assert.fieldEquals(
+      "JobHistory",
+      jobHistoryId,
+      "job",
+      jobEntityId
+    )
   })
 })
