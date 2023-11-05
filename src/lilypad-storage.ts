@@ -54,23 +54,27 @@ export function handleDealStateChange(event: DealStateChange): void {
   let job = Job.load(jobIdBytes)
 
   if (!job) {
+    // create new job
     job = new Job(jobIdBytes)
     job.dealId = event.params.dealId
     job.createdAtTimestamp = event.block.timestamp
+    job.lastModifiedTimestamp = event.block.timestamp
+    job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
+  } else {
+    // update existing job
+    job.lastModifiedTimestamp = event.block.timestamp
+    job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
   }
 
   job.state = getJobState(event.params.state)
 
   job.save()
-  log.info("DealStateChange: {}", [job.id.toString()])
 
-  log.info("transaction hash: {}", [event.transaction.hash.toHex()])
   let jobHistory = new JobHistory(event.transaction.hash.toHex())
   jobHistory.job = job.id
   jobHistory.timestamp = event.block.timestamp
   jobHistory.state = getJobState(event.params.state)
   jobHistory.save()
-
 }
 
 export function handleInitialized(event: Initialized): void {}

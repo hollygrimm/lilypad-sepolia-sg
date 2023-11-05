@@ -15,10 +15,9 @@ enum JobState {
 type Job @entity {
   id: Bytes! # keccak256 hash on the dealId
   dealId: String!
-  # members
-  # timeouts
-  # pricing
   createdAtTimestamp: BigInt!
+  lastModifiedTimestamp: BigInt!
+  durationSeconds: BigInt!
   state: JobState!
   history: [JobHistory!]! @derivedFrom(field: "job")
 }

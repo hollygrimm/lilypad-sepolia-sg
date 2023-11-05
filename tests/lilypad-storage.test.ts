@@ -18,9 +18,12 @@ import { createDealStateChangeEvent } from "./lilypad-storage-utils"
 describe("Describe entity assertions", () => {
   beforeAll(() => {
     let dealId = "QmUYUSt3tDCXM7AChPn7YQUVN1gJzZnXAXfeiaitYdyKL2"
-    let state = 10
-    let newDealStateChangeEvent = createDealStateChangeEvent(dealId, state)
-    handleDealStateChange(newDealStateChangeEvent)
+    let state = 1
+    let dealStateChangeEvent = createDealStateChangeEvent(dealId, state)
+    handleDealStateChange(dealStateChangeEvent)
+    let state2 = 2
+    let dealStateChangeEvent2 = createDealStateChangeEvent(dealId, state2)
+    handleDealStateChange(dealStateChangeEvent2)
   })
 
   afterAll(() => {
@@ -40,7 +43,7 @@ describe("Describe entity assertions", () => {
       "Job",
       "0x7a6b066d2022cf1d975a60b9c144d4b1dc9949e7d7f5dd7e88c7ab45adeb5d69",
       "state",
-      "TimeoutMediateResults"
+      "ResultsSubmitted"
     )
   })
 
@@ -55,7 +58,7 @@ describe("Describe entity assertions", () => {
       "JobHistory",
       jobHistoryId,
       "state",
-      "TimeoutMediateResults"
+      "ResultsSubmitted"
     )
     
     // If your JobHistory stores a reference to the Job entity, you can assert that as well

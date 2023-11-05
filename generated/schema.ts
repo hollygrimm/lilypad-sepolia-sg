@@ -76,6 +76,32 @@ export class Job extends Entity {
     this.set("createdAtTimestamp", Value.fromBigInt(value));
   }
 
+  get lastModifiedTimestamp(): BigInt {
+    let value = this.get("lastModifiedTimestamp");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set lastModifiedTimestamp(value: BigInt) {
+    this.set("lastModifiedTimestamp", Value.fromBigInt(value));
+  }
+
+  get durationSeconds(): BigInt {
+    let value = this.get("durationSeconds");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set durationSeconds(value: BigInt) {
+    this.set("durationSeconds", Value.fromBigInt(value));
+  }
+
   get state(): string {
     let value = this.get("state");
     if (!value || value.kind == ValueKind.NULL) {
