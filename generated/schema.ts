@@ -185,6 +185,66 @@ export class JobHistory extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
+  get payee(): Bytes | null {
+    let value = this.get("payee");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set payee(value: Bytes | null) {
+    if (!value) {
+      this.unset("payee");
+    } else {
+      this.set("payee", Value.fromBytes(<Bytes>value));
+    }
+  }
+
+  get amount(): BigInt | null {
+    let value = this.get("amount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set amount(value: BigInt | null) {
+    if (!value) {
+      this.unset("amount");
+    } else {
+      this.set("amount", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
+  get reason(): i32 {
+    let value = this.get("reason");
+    if (!value || value.kind == ValueKind.NULL) {
+      return 0;
+    } else {
+      return value.toI32();
+    }
+  }
+
+  set reason(value: i32) {
+    this.set("reason", Value.fromI32(value));
+  }
+
+  get direction(): i32 {
+    let value = this.get("direction");
+    if (!value || value.kind == ValueKind.NULL) {
+      return 0;
+    } else {
+      return value.toI32();
+    }
+  }
+
+  set direction(value: i32) {
+    this.set("direction", Value.fromI32(value));
+  }
+
   get state(): string {
     let value = this.get("state");
     if (!value || value.kind == ValueKind.NULL) {

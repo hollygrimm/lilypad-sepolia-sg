@@ -1,51 +1,40 @@
-import { BigInt, Bytes, ByteArray, log, crypto } from "@graphprotocol/graph-ts"
+import { Bytes, crypto } from "@graphprotocol/graph-ts"
 import {
-  LilypadStorage,
   DealStateChange,
   Initialized,
   OwnershipTransferred
 } from "../generated/LilypadStorage/LilypadStorage"
 import { Job, JobHistory } from "../generated/schema"
 
-class JobState {
-  static DEALNEGOTIATING: string = "DealNegotiating";
-  static DEALAGREED: string = "DealAgreed";
-  static RESULTS_SUBMITTED: string = "ResultsSubmitted";
-  static RESULTS_CHECKED: string = "ResultsChecked";
-  static RESULTS_ACCEPTED: string = "ResultsAccepted";
-  static MEDIATION_ACCEPTED: string = "MediationAccepted";
-  static MEDIATION_REJECTED: string = "MediationRejected";
-  static TIMEOUT_AGREE: string = "TimeoutAgree";
-  static TIMEOUT_SUBMIT_RESULTS: string = "TimeoutSubmitResults";
-  static TIMEOUT_JUDGE_RESULTS: string = "TimeoutJudgeResults";
-  static TIMEOUT_MEDIATE_RESULTS: string = "TimeoutMediateResults";
+export enum JobState {
+  DEALNEGOTIATING = 0,
+  DEALAGREED = 1,
+  RESULTS_SUBMITTED = 2,
+  RESULTS_CHECKED = 3,
+  RESULTS_ACCEPTED = 4,
+  MEDIATION_ACCEPTED = 5,
+  MEDIATION_REJECTED = 6,
+  TIMEOUT_AGREE = 7,
+  TIMEOUT_SUBMIT_RESULTS = 8,
+  TIMEOUT_JUDGE_RESULTS = 9,
+  TIMEOUT_MEDIATE_RESULTS = 10,
 }
 
-export function getJobState(jobStateInt: number): string {
-  let jobstate = JobState.DEALNEGOTIATING
+const jobStateToString = new Map<JobState, string>();
+jobStateToString.set(JobState.DEALNEGOTIATING, "DealNegotiating");
+jobStateToString.set(JobState.DEALAGREED, "DealAgreed");
+jobStateToString.set(JobState.RESULTS_SUBMITTED, "ResultsSubmitted");
+jobStateToString.set(JobState.RESULTS_CHECKED, "ResultsChecked");
+jobStateToString.set(JobState.RESULTS_ACCEPTED, "ResultsAccepted");
+jobStateToString.set(JobState.MEDIATION_ACCEPTED, "MediationAccepted");
+jobStateToString.set(JobState.MEDIATION_REJECTED, "MediationRejected");
+jobStateToString.set(JobState.TIMEOUT_AGREE, "TimeoutAgree");
+jobStateToString.set(JobState.TIMEOUT_SUBMIT_RESULTS, "TimeoutSubmitResults");
+jobStateToString.set(JobState.TIMEOUT_JUDGE_RESULTS, "TimeoutJudgeResults");
+jobStateToString.set(JobState.TIMEOUT_MEDIATE_RESULTS, "TimeoutMediateResults");
 
-  if (jobStateInt == 1) {
-    jobstate = JobState.DEALAGREED
-  } else if (jobStateInt == 2) {
-    jobstate = JobState.RESULTS_SUBMITTED
-  } else if (jobStateInt == 3) {
-    jobstate = JobState.RESULTS_CHECKED
-  } else if (jobStateInt == 4) {
-    jobstate = JobState.RESULTS_ACCEPTED
-  } else if (jobStateInt == 5) {
-    jobstate = JobState.MEDIATION_ACCEPTED
-  } else if (jobStateInt == 6) {
-    jobstate = JobState.MEDIATION_REJECTED
-  } else if (jobStateInt == 7) {
-    jobstate = JobState.TIMEOUT_AGREE
-  } else if (jobStateInt == 8) {
-    jobstate = JobState.TIMEOUT_SUBMIT_RESULTS
-  } else if (jobStateInt == 9) {
-    jobstate = JobState.TIMEOUT_JUDGE_RESULTS
-  } else if (jobStateInt == 10) {
-    jobstate = JobState.TIMEOUT_MEDIATE_RESULTS
-  }
-  return jobstate
+export function getJobState(jobStateInt: JobState): string {
+  return jobStateToString.get(jobStateInt) || "DealNegotiating"; // Default to "DealNegotiating" if not found
 }
 
 export function handleDealStateChange(event: DealStateChange): void {

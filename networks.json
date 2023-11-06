@@ -3,6 +3,10 @@
     "LilypadStorage": {
       "address": "0x79Ee2d28eDDd9Ee0b68613b29Dab474623F8D1c6",
       "startBlock": 4609895
+    },
+    "LilypadPayments": {
+      "address": "0xC5b1737A2282E6283c54f67bC401426058BC170F",
+      "startBlock": 4609892
     }
   }
 }

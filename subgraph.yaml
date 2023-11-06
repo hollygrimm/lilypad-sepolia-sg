@@ -28,3 +28,29 @@ dataSources:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
       file: ./src/lilypad-storage.ts
+  - kind: ethereum
+    name: LilypadPayments
+    network: sepolia
+    source:
+      address: "0xC5b1737A2282E6283c54f67bC401426058BC170F"
+      abi: LilypadPayments
+      startBlock: 4609892
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - LilypadPaymentsInitialized
+        - LilypadPaymentsOwnershipTransferred
+        - Payment
+      abis:
+        - name: LilypadPayments
+          file: ./abis/LilypadPayments.json
+      eventHandlers:
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Payment(string,address,uint256,uint8,uint8)
+          handler: handlePayment
+      file: ./src/lilypad-payments.ts

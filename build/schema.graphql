@@ -26,5 +26,9 @@ type JobHistory @entity {
   id: ID! #transaction.hash
   job: Job! @link # This creates a many-to-one relationship to Job
   timestamp: BigInt!
+  payee: Bytes # address
+  amount: BigInt # uint256
+  reason: Int # uint8
+  direction: Int # uint8
   state: JobState!
 }
