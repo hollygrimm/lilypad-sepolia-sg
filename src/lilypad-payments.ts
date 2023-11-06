@@ -7,6 +7,34 @@ import {
 import { Job, JobHistory } from "../generated/schema"
 import { getJobState, JobState } from "./lilypad-storage"
 
+enum PaymentReason {
+  // the money the JC puts up to pay for the job
+  PAYMENTCOLLATERAL = 0,
+
+  // the money the RP puts up to attest it's results are correct
+  RESULTSCOLLATERAL = 1,
+
+  // the money the RP, JC and Mediator all put up to prevent timeouts
+  TIMEOUTCOLLATERAL = 2,
+
+  // the money the RP gets paid for the job for running it successfully
+  JOBPAYMENT = 3,
+
+  // the money the JC pays the mediator for resolving a dispute
+  MEDIATIONFEE = 4,
+}
+
+const paymentReasonToString = new Map<PaymentReason, string>();
+paymentReasonToString.set(PaymentReason.PAYMENTCOLLATERAL, "PaymentCollateral");
+paymentReasonToString.set(PaymentReason.RESULTSCOLLATERAL, "ResultsCollateral");
+paymentReasonToString.set(PaymentReason.TIMEOUTCOLLATERAL, "TimeoutCollateral");
+paymentReasonToString.set(PaymentReason.JOBPAYMENT, "JobPayment");
+paymentReasonToString.set(PaymentReason.MEDIATIONFEE, "MediationFee");
+
+export function getPaymentReason(paymentReasonInt: PaymentReason): string {
+  return paymentReasonToString.get(paymentReasonInt) || "PaidIn"; // Default to "PaidIn" if not found
+}
+
 enum PaymentDirection {
   PAID_IN = 0,
   PAID_OUT = 1,
@@ -57,8 +85,8 @@ export function handlePayment(event: PaymentEvent): void {
   jobHistory.state = job.state
   jobHistory.payee = event.params.payee
   jobHistory.amount = event.params.amount
-  jobHistory.reason = event.params.reason
-  jobHistory.direction = event.params.direction
+  jobHistory.reason = getPaymentReason(event.params.reason)
+  jobHistory.direction = getPaymentDirection(event.params.direction)
 
   jobHistory.save()
 }

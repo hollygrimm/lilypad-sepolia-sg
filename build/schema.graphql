@@ -28,7 +28,7 @@ type JobHistory @entity {
   timestamp: BigInt!
   payee: Bytes # address
   amount: BigInt # uint256
-  reason: Int # uint8
-  direction: Int # uint8
+  reason: String
+  direction: String
   state: JobState!
 }

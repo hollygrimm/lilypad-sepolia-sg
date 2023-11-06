@@ -219,30 +219,38 @@ export class JobHistory extends Entity {
     }
   }
 
-  get reason(): i32 {
+  get reason(): string | null {
     let value = this.get("reason");
     if (!value || value.kind == ValueKind.NULL) {
-      return 0;
+      return null;
     } else {
-      return value.toI32();
+      return value.toString();
     }
   }
 
-  set reason(value: i32) {
-    this.set("reason", Value.fromI32(value));
+  set reason(value: string | null) {
+    if (!value) {
+      this.unset("reason");
+    } else {
+      this.set("reason", Value.fromString(<string>value));
+    }
   }
 
-  get direction(): i32 {
+  get direction(): string | null {
     let value = this.get("direction");
     if (!value || value.kind == ValueKind.NULL) {
-      return 0;
+      return null;
     } else {
-      return value.toI32();
+      return value.toString();
     }
   }
 
-  set direction(value: i32) {
-    this.set("direction", Value.fromI32(value));
+  set direction(value: string | null) {
+    if (!value) {
+      this.unset("direction");
+    } else {
+      this.set("direction", Value.fromString(<string>value));
+    }
   }
 
   get state(): string {
