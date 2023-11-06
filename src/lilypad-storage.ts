@@ -59,7 +59,7 @@ export function handleDealStateChange(event: DealStateChange): void {
 
   job.save()
 
-  let jobHistory = new JobHistory(event.transaction.hash.toHex())
+  let jobHistory = new JobHistory(event.block.number.toString() + "_" + event.transaction.index.toString());
   jobHistory.job = job.id
   jobHistory.timestamp = event.block.timestamp
   jobHistory.state = getJobState(event.params.state)
