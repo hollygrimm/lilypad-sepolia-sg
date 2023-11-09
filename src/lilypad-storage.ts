@@ -1,4 +1,3 @@
-import { Bytes, crypto } from "@graphprotocol/graph-ts"
 import {
   DealStateChange,
   Initialized,
@@ -38,14 +37,11 @@ export function getJobState(jobStateInt: JobState): string {
 }
 
 export function handleDealStateChange(event: DealStateChange): void {
-  let dealIdBytes = Bytes.fromUTF8(event.params.dealId)
-  let jobIdBytes = Bytes.fromByteArray(crypto.keccak256(dealIdBytes))
-  let job = Job.load(jobIdBytes)
+  let job = Job.load(event.params.dealId)
 
   if (!job) {
     // create new job
-    job = new Job(jobIdBytes)
-    job.dealId = event.params.dealId
+    job = new Job(event.params.dealId)
     job.createdAtTimestamp = event.block.timestamp
     job.lastModifiedTimestamp = event.block.timestamp
     job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
@@ -56,10 +52,11 @@ export function handleDealStateChange(event: DealStateChange): void {
   }
 
   job.state = getJobState(event.params.state)
-
   job.save()
 
-  let jobHistory = new JobHistory(event.block.number.toString() + "_" + event.transaction.index.toString());
+  // Create a JobHistory entity
+  const jobHistoryId = job.state + "-" + event.transaction.hash.toHexString() + "-" + event.logIndex.toString();
+  let jobHistory = new JobHistory(jobHistoryId);
   jobHistory.job = job.id
   jobHistory.timestamp = event.block.timestamp
   jobHistory.state = getJobState(event.params.state)

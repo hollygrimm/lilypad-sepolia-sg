@@ -13,8 +13,7 @@ enum JobState {
 }
 
 type Job @entity {
-  id: Bytes! # keccak256 hash on the dealId
-  dealId: String!
+  id: String! # dealId
   createdAtTimestamp: BigInt!
   lastModifiedTimestamp: BigInt!
   durationSeconds: BigInt!
@@ -23,7 +22,7 @@ type Job @entity {
 }
 
 type JobHistory @entity {
-  id: ID! #transaction.hash
+  id: String! #transaction.hash
   job: Job! @link # This creates a many-to-one relationship to Job
   timestamp: BigInt!
   payee: Bytes # address

@@ -31,12 +31,35 @@ describe("Describe entity assertions", () => {
     clearStore()
   })
 
-  // For more test scenarios, see:
-  // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
-
   test("Initialized created and stored", () => {
     assert.entityCount("Job", 1)
 
+    assert.fieldEquals(
+      "Job",
+      "QmUYUSt3tDCXM7AChPn7YQUVN1gJzZnXAXfeiaitYdyKL2",
+      "state",
+      "ResultsAccepted"
+    )
+  })
 
+  test("JobHistory entity is created with the correct values", () => {
+    assert.entityCount("JobHistory", 1)
+    
+    let jobHistoryId = "ResultsAccepted-0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1"
+
+    assert.fieldEquals(
+      "JobHistory",
+      jobHistoryId,
+      "state",
+      "ResultsAccepted"
+    )
+    
+    let jobEntityId = "QmUYUSt3tDCXM7AChPn7YQUVN1gJzZnXAXfeiaitYdyKL2"
+    assert.fieldEquals(
+      "JobHistory",
+      jobHistoryId,
+      "job",
+      jobEntityId
+    )
   })
 })

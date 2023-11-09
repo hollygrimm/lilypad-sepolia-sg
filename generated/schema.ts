@@ -12,9 +12,9 @@ import {
 } from "@graphprotocol/graph-ts";
 
 export class Job extends Entity {
-  constructor(id: Bytes) {
+  constructor(id: string) {
     super();
-    this.set("id", Value.fromBytes(id));
+    this.set("id", Value.fromString(id));
   }
 
   save(): void {
@@ -22,36 +22,23 @@ export class Job extends Entity {
     assert(id != null, "Cannot save Job entity without an ID");
     if (id) {
       assert(
-        id.kind == ValueKind.BYTES,
-        `Entities of type Job must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        id.kind == ValueKind.STRING,
+        `Entities of type Job must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("Job", id.toBytes().toHexString(), this);
+      store.set("Job", id.toString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): Job | null {
-    return changetype<Job | null>(store.get_in_block("Job", id.toHexString()));
+  static loadInBlock(id: string): Job | null {
+    return changetype<Job | null>(store.get_in_block("Job", id));
   }
 
-  static load(id: Bytes): Job | null {
-    return changetype<Job | null>(store.get("Job", id.toHexString()));
+  static load(id: string): Job | null {
+    return changetype<Job | null>(store.get("Job", id));
   }
 
-  get id(): Bytes {
+  get id(): string {
     let value = this.get("id");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set id(value: Bytes) {
-    this.set("id", Value.fromBytes(value));
-  }
-
-  get dealId(): string {
-    let value = this.get("dealId");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -59,8 +46,8 @@ export class Job extends Entity {
     }
   }
 
-  set dealId(value: string) {
-    this.set("dealId", Value.fromString(value));
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
   }
 
   get createdAtTimestamp(): BigInt {
@@ -159,17 +146,17 @@ export class JobHistory extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get job(): Bytes {
+  get job(): string {
     let value = this.get("job");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set job(value: Bytes) {
-    this.set("job", Value.fromBytes(value));
+  set job(value: string) {
+    this.set("job", Value.fromString(value));
   }
 
   get timestamp(): BigInt {
