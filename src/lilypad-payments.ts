@@ -61,25 +61,28 @@ export function handlePayment(event: PaymentEvent): void {
     job.createdAtTimestamp = event.block.timestamp
     job.lastModifiedTimestamp = event.block.timestamp
     job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
+    // Initialize state for new job
+    job.state = getJobState(JobState.DEALNEGOTIATING)
   } else {
     // update existing job
     job.lastModifiedTimestamp = event.block.timestamp
     job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
   }
 
+  // Update state based on payment direction
   if (event.params.direction == PaymentDirection.PAID_IN) {
     job.state = getJobState(JobState.DEALNEGOTIATING)
-  // FIXME: is there a different state if the payment is slashed?
-  } else if (event.params.direction == PaymentDirection.PAID_OUT || event.params.direction == PaymentDirection.REFUNDED || event.params.direction == PaymentDirection.SLASHED) {
+  } else if (event.params.direction == PaymentDirection.PAID_OUT || 
+             event.params.direction == PaymentDirection.REFUNDED || 
+             event.params.direction == PaymentDirection.SLASHED) {
     job.state = getJobState(JobState.RESULTS_ACCEPTED)
   }
 
   job.save()
 
-  // Create a JobHistory entity
-  const jobHistoryId = job.state + "-" + event.transaction.hash.toHexString() + "-" + event.logIndex.toString();
-  let jobHistory = new JobHistory(jobHistoryId);
-  log.info("jobHistoryId: {}", [jobHistory.id])
+  // Create a JobHistory entity with explicit type conversion
+  const jobHistoryId = job.state + "-" + event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+  let jobHistory = new JobHistory(jobHistoryId)
   jobHistory.job = job.id
   jobHistory.timestamp = event.block.timestamp
   jobHistory.state = job.state

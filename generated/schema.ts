@@ -8,7 +8,7 @@ import {
   store,
   Bytes,
   BigInt,
-  BigDecimal
+  BigDecimal,
 } from "@graphprotocol/graph-ts";
 
 export class Job extends Entity {
@@ -23,7 +23,7 @@ export class Job extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type Job must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type Job must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set("Job", id.toString(), this);
     }
@@ -119,7 +119,7 @@ export class JobHistory extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type JobHistory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type JobHistory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set("JobHistory", id.toString(), this);
     }

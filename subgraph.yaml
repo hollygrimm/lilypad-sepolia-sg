@@ -1,22 +1,24 @@
-specVersion: 0.0.5
+specVersion: 0.0.7
+description: Lilypad job tracking subgraph for Arbitrum Sepolia network
+repository: https://github.com/bacalhau-project/lilypad-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
     name: LilypadStorage
-    network: sepolia
+    network: arbitrum-sepolia
     source:
-      address: "0x79Ee2d28eDDd9Ee0b68613b29Dab474623F8D1c6"
+      address: "0x8d06cEB457d336c6c938FCe9C4862615a4F79af0"
       abi: LilypadStorage
-      startBlock: 4609895
+      startBlock: 54703798
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
+      file: ./src/lilypad-storage.ts
       entities:
-        - DealStateChange
-        - Initialized
-        - OwnershipTransferred
+        - Job
+        - JobHistory
       abis:
         - name: LilypadStorage
           file: ./abis/LilypadStorage.json
@@ -27,22 +29,22 @@ dataSources:
           handler: handleInitialized
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
-      file: ./src/lilypad-storage.ts
+
   - kind: ethereum
     name: LilypadPayments
-    network: sepolia
+    network: arbitrum-sepolia
     source:
-      address: "0xC5b1737A2282E6283c54f67bC401426058BC170F"
+      address: "0xdE7CEa09A23e7Aa4980B95F69B8912F39A0e323A"
       abi: LilypadPayments
-      startBlock: 4609892
+      startBlock: 54703737
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
+      file: ./src/lilypad-payments.ts
       entities:
-        - LilypadPaymentsInitialized
-        - LilypadPaymentsOwnershipTransferred
-        - Payment
+        - Job
+        - JobHistory
       abis:
         - name: LilypadPayments
           file: ./abis/LilypadPayments.json
@@ -53,4 +55,3 @@ dataSources:
           handler: handleOwnershipTransferred
         - event: Payment(string,address,uint256,uint8,uint8)
           handler: handlePayment
-      file: ./src/lilypad-payments.ts

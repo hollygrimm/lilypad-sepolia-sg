@@ -45,18 +45,20 @@ export function handleDealStateChange(event: DealStateChange): void {
     job.createdAtTimestamp = event.block.timestamp
     job.lastModifiedTimestamp = event.block.timestamp
     job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
+    // Initialize state for new job
+    job.state = getJobState(event.params.state)
   } else {
     // update existing job
     job.lastModifiedTimestamp = event.block.timestamp
     job.durationSeconds = job.lastModifiedTimestamp.minus(job.createdAtTimestamp)
+    job.state = getJobState(event.params.state)
   }
 
-  job.state = getJobState(event.params.state)
   job.save()
 
-  // Create a JobHistory entity
-  const jobHistoryId = job.state + "-" + event.transaction.hash.toHexString() + "-" + event.logIndex.toString();
-  let jobHistory = new JobHistory(jobHistoryId);
+  // Create a JobHistory entity with explicit type conversion
+  const jobHistoryId = job.state + "-" + event.transaction.hash.toHexString() + "-" + event.logIndex.toString()
+  let jobHistory = new JobHistory(jobHistoryId)
   jobHistory.job = job.id
   jobHistory.timestamp = event.block.timestamp
   jobHistory.state = getJobState(event.params.state)

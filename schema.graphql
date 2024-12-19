@@ -1,33 +1,62 @@
+"Possible states a job can be in"
 enum JobState {
-  DealNegotiating #DealStateChange DealNegotiating
-  DealAgreed #DealStateChange DealAgreed
-  ResultsSubmitted #DealStateChange ResultsSubmitted
-  ResultsChecked #DealStateChange ResultsChecked
-  ResultsAccepted #DealStateChange ResultsAccepted
-  MediationAccepted #DealStateChange MediationAccepted
-  MediationRejected #DealStateChange MediationRejected
-  TimeoutAgree #DealStateChange TimeoutAgree
-  TimeoutSubmitResults #DealStateChange TimeoutSubmitResults
-  TimeoutJudgeResults #DealStateChange TimeoutJudgeResults
-  TimeoutMediateResults #DealStateChange TimeoutMediateResults
+  DealNegotiating
+  DealAgreed
+  ResultsSubmitted
+  ResultsChecked 
+  ResultsAccepted
+  MediationAccepted
+  MediationRejected
+  TimeoutAgree
+  TimeoutSubmitResults
+  TimeoutJudgeResults
+  TimeoutMediateResults
 }
 
+"Unique identifier - dealId"
 type Job @entity {
-  id: String! # dealId
+  "Unique identifier - dealId"
+  id: ID!
+  
+  "Timestamp when the job was created"
   createdAtTimestamp: BigInt!
+  
+  "Timestamp of last modification"
   lastModifiedTimestamp: BigInt!
+  
+  "Duration in seconds from creation to last modification"
   durationSeconds: BigInt!
+  
+  "Current state of the job"
   state: JobState!
+  
+  "History of all state changes and payments"
   history: [JobHistory!]! @derivedFrom(field: "job")
 }
 
+"Unique identifier - transaction hash"
 type JobHistory @entity {
-  id: String! #transaction.hash
-  job: Job! @link # This creates a many-to-one relationship to Job
+  "Unique identifier - transaction hash"
+  id: ID!
+  
+  "Reference to the parent job"
+  job: Job! @link
+  
+  "Timestamp of the history entry"
   timestamp: BigInt!
-  payee: Bytes # address
-  amount: BigInt # uint256
+  
+  "Address of the payee if this is a payment event"
+  payee: Bytes
+  
+  "Amount of the payment if this is a payment event"
+  amount: BigInt
+  
+  "Reason for the payment if this is a payment event"
   reason: String
+  
+  "Direction of the payment if this is a payment event"
   direction: String
+  
+  "State of the job at this point in history"
   state: JobState!
 }

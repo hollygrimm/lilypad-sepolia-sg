@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Initialized extends ethereum.Event {
@@ -93,7 +93,7 @@ export class LilypadPayments extends ethereum.SmartContract {
     let result = super.call(
       "getControllerAddress",
       "getControllerAddress():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -103,7 +103,7 @@ export class LilypadPayments extends ethereum.SmartContract {
     let result = super.tryCall(
       "getControllerAddress",
       "getControllerAddress():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -116,7 +116,7 @@ export class LilypadPayments extends ethereum.SmartContract {
     let result = super.call(
       "getTokenAddress",
       "getTokenAddress():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -126,7 +126,7 @@ export class LilypadPayments extends ethereum.SmartContract {
     let result = super.tryCall(
       "getTokenAddress",
       "getTokenAddress():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

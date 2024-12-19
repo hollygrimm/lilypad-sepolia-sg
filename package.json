@@ -1,18 +1,21 @@
 {
-  "name": "lilypad-sepolia",
+  "name": "lilypad-arbitrum-sepolia",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ lilypad-sepolia",
-    "create-local": "graph create --node http://localhost:8020/ lilypad-sepolia",
-    "remove-local": "graph remove --node http://localhost:8020/ lilypad-sepolia",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 lilypad-sepolia",
+    "create": "graph create lilypad-arbitrum-sepolia --node https://api.studio.thegraph.com/deploy/",
+    "deploy": "graph deploy lilypad-arbitrum-sepolia --ipfs https://api.thegraph.com/ipfs/ --node https://api.studio.thegraph.com/deploy/",
+    "deploy-local": "graph deploy lilypad-arbitrum-sepolia --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
+    "create-local": "graph create lilypad-arbitrum-sepolia --node http://127.0.0.1:8020",
+    "remove-local": "graph remove lilypad-arbitrum-sepolia --node http://127.0.0.1:8020",
     "test": "graph test"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.60.0",
-    "@graphprotocol/graph-ts": "0.30.0"
+    "@graphprotocol/graph-cli": "0.93.1",
+    "@graphprotocol/graph-ts": "0.36.0"
   },
-  "devDependencies": { "matchstick-as": "0.5.0" }
+  "devDependencies": {
+    "matchstick-as": "0.6.0"
+  }
 }

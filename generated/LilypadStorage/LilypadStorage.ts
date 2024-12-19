@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class DealStateChange extends ethereum.Event {
@@ -213,19 +213,19 @@ export class LilypadStorage__ensureDealResultValue0Struct extends ethereum.Tuple
 
   get members(): LilypadStorage__ensureDealResultValue0MembersStruct {
     return changetype<LilypadStorage__ensureDealResultValue0MembersStruct>(
-      this[1].toTuple()
+      this[1].toTuple(),
     );
   }
 
   get timeouts(): LilypadStorage__ensureDealResultValue0TimeoutsStruct {
     return changetype<LilypadStorage__ensureDealResultValue0TimeoutsStruct>(
-      this[2].toTuple()
+      this[2].toTuple(),
     );
   }
 
   get pricing(): LilypadStorage__ensureDealResultValue0PricingStruct {
     return changetype<LilypadStorage__ensureDealResultValue0PricingStruct>(
-      this[3].toTuple()
+      this[3].toTuple(),
     );
   }
 }
@@ -250,27 +250,27 @@ export class LilypadStorage__ensureDealResultValue0MembersStruct extends ethereu
 
 export class LilypadStorage__ensureDealResultValue0TimeoutsStruct extends ethereum.Tuple {
   get agree(): LilypadStorage__ensureDealResultValue0TimeoutsAgreeStruct {
-    return changetype<
-      LilypadStorage__ensureDealResultValue0TimeoutsAgreeStruct
-    >(this[0].toTuple());
+    return changetype<LilypadStorage__ensureDealResultValue0TimeoutsAgreeStruct>(
+      this[0].toTuple(),
+    );
   }
 
   get submitResults(): LilypadStorage__ensureDealResultValue0TimeoutsSubmitResultsStruct {
-    return changetype<
-      LilypadStorage__ensureDealResultValue0TimeoutsSubmitResultsStruct
-    >(this[1].toTuple());
+    return changetype<LilypadStorage__ensureDealResultValue0TimeoutsSubmitResultsStruct>(
+      this[1].toTuple(),
+    );
   }
 
   get judgeResults(): LilypadStorage__ensureDealResultValue0TimeoutsJudgeResultsStruct {
-    return changetype<
-      LilypadStorage__ensureDealResultValue0TimeoutsJudgeResultsStruct
-    >(this[2].toTuple());
+    return changetype<LilypadStorage__ensureDealResultValue0TimeoutsJudgeResultsStruct>(
+      this[2].toTuple(),
+    );
   }
 
   get mediateResults(): LilypadStorage__ensureDealResultValue0TimeoutsMediateResultsStruct {
-    return changetype<
-      LilypadStorage__ensureDealResultValue0TimeoutsMediateResultsStruct
-    >(this[3].toTuple());
+    return changetype<LilypadStorage__ensureDealResultValue0TimeoutsMediateResultsStruct>(
+      this[3].toTuple(),
+    );
   }
 }
 
@@ -353,26 +353,26 @@ export class LilypadStorage__ensureDealInputMembersStruct extends ethereum.Tuple
 export class LilypadStorage__ensureDealInputTimeoutsStruct extends ethereum.Tuple {
   get agree(): LilypadStorage__ensureDealInputTimeoutsAgreeStruct {
     return changetype<LilypadStorage__ensureDealInputTimeoutsAgreeStruct>(
-      this[0].toTuple()
+      this[0].toTuple(),
     );
   }
 
   get submitResults(): LilypadStorage__ensureDealInputTimeoutsSubmitResultsStruct {
-    return changetype<
-      LilypadStorage__ensureDealInputTimeoutsSubmitResultsStruct
-    >(this[1].toTuple());
+    return changetype<LilypadStorage__ensureDealInputTimeoutsSubmitResultsStruct>(
+      this[1].toTuple(),
+    );
   }
 
   get judgeResults(): LilypadStorage__ensureDealInputTimeoutsJudgeResultsStruct {
-    return changetype<
-      LilypadStorage__ensureDealInputTimeoutsJudgeResultsStruct
-    >(this[2].toTuple());
+    return changetype<LilypadStorage__ensureDealInputTimeoutsJudgeResultsStruct>(
+      this[2].toTuple(),
+    );
   }
 
   get mediateResults(): LilypadStorage__ensureDealInputTimeoutsMediateResultsStruct {
-    return changetype<
-      LilypadStorage__ensureDealInputTimeoutsMediateResultsStruct
-    >(this[3].toTuple());
+    return changetype<LilypadStorage__ensureDealInputTimeoutsMediateResultsStruct>(
+      this[3].toTuple(),
+    );
   }
 }
 
@@ -499,19 +499,19 @@ export class LilypadStorage__getDealResultValue0Struct extends ethereum.Tuple {
 
   get members(): LilypadStorage__getDealResultValue0MembersStruct {
     return changetype<LilypadStorage__getDealResultValue0MembersStruct>(
-      this[1].toTuple()
+      this[1].toTuple(),
     );
   }
 
   get timeouts(): LilypadStorage__getDealResultValue0TimeoutsStruct {
     return changetype<LilypadStorage__getDealResultValue0TimeoutsStruct>(
-      this[2].toTuple()
+      this[2].toTuple(),
     );
   }
 
   get pricing(): LilypadStorage__getDealResultValue0PricingStruct {
     return changetype<LilypadStorage__getDealResultValue0PricingStruct>(
-      this[3].toTuple()
+      this[3].toTuple(),
     );
   }
 }
@@ -537,26 +537,26 @@ export class LilypadStorage__getDealResultValue0MembersStruct extends ethereum.T
 export class LilypadStorage__getDealResultValue0TimeoutsStruct extends ethereum.Tuple {
   get agree(): LilypadStorage__getDealResultValue0TimeoutsAgreeStruct {
     return changetype<LilypadStorage__getDealResultValue0TimeoutsAgreeStruct>(
-      this[0].toTuple()
+      this[0].toTuple(),
     );
   }
 
   get submitResults(): LilypadStorage__getDealResultValue0TimeoutsSubmitResultsStruct {
-    return changetype<
-      LilypadStorage__getDealResultValue0TimeoutsSubmitResultsStruct
-    >(this[1].toTuple());
+    return changetype<LilypadStorage__getDealResultValue0TimeoutsSubmitResultsStruct>(
+      this[1].toTuple(),
+    );
   }
 
   get judgeResults(): LilypadStorage__getDealResultValue0TimeoutsJudgeResultsStruct {
-    return changetype<
-      LilypadStorage__getDealResultValue0TimeoutsJudgeResultsStruct
-    >(this[2].toTuple());
+    return changetype<LilypadStorage__getDealResultValue0TimeoutsJudgeResultsStruct>(
+      this[2].toTuple(),
+    );
   }
 
   get mediateResults(): LilypadStorage__getDealResultValue0TimeoutsMediateResultsStruct {
-    return changetype<
-      LilypadStorage__getDealResultValue0TimeoutsMediateResultsStruct
-    >(this[3].toTuple());
+    return changetype<LilypadStorage__getDealResultValue0TimeoutsMediateResultsStruct>(
+      this[3].toTuple(),
+    );
   }
 }
 
@@ -645,7 +645,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     dealId: string,
     resultsId: string,
     dataId: string,
-    instructionCount: BigInt
+    instructionCount: BigInt,
   ): LilypadStorage__addResultResultValue0Struct {
     let result = super.call(
       "addResult",
@@ -654,12 +654,12 @@ export class LilypadStorage extends ethereum.SmartContract {
         ethereum.Value.fromString(dealId),
         ethereum.Value.fromString(resultsId),
         ethereum.Value.fromString(dataId),
-        ethereum.Value.fromUnsignedBigInt(instructionCount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(instructionCount),
+      ],
     );
 
     return changetype<LilypadStorage__addResultResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
@@ -667,7 +667,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     dealId: string,
     resultsId: string,
     dataId: string,
-    instructionCount: BigInt
+    instructionCount: BigInt,
   ): ethereum.CallResult<LilypadStorage__addResultResultValue0Struct> {
     let result = super.tryCall(
       "addResult",
@@ -676,8 +676,8 @@ export class LilypadStorage extends ethereum.SmartContract {
         ethereum.Value.fromString(dealId),
         ethereum.Value.fromString(resultsId),
         ethereum.Value.fromString(dataId),
-        ethereum.Value.fromUnsignedBigInt(instructionCount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(instructionCount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -685,32 +685,32 @@ export class LilypadStorage extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<LilypadStorage__addResultResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
   agreeJobCreator(
-    dealId: string
+    dealId: string,
   ): LilypadStorage__agreeJobCreatorResultValue0Struct {
     let result = super.call(
       "agreeJobCreator",
       "agreeJobCreator(string):((uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
 
     return changetype<LilypadStorage__agreeJobCreatorResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_agreeJobCreator(
-    dealId: string
+    dealId: string,
   ): ethereum.CallResult<LilypadStorage__agreeJobCreatorResultValue0Struct> {
     let result = super.tryCall(
       "agreeJobCreator",
       "agreeJobCreator(string):((uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -718,34 +718,32 @@ export class LilypadStorage extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<LilypadStorage__agreeJobCreatorResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
   agreeResourceProvider(
-    dealId: string
+    dealId: string,
   ): LilypadStorage__agreeResourceProviderResultValue0Struct {
     let result = super.call(
       "agreeResourceProvider",
       "agreeResourceProvider(string):((uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
 
     return changetype<LilypadStorage__agreeResourceProviderResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_agreeResourceProvider(
-    dealId: string
-  ): ethereum.CallResult<
-    LilypadStorage__agreeResourceProviderResultValue0Struct
-  > {
+    dealId: string,
+  ): ethereum.CallResult<LilypadStorage__agreeResourceProviderResultValue0Struct> {
     let result = super.tryCall(
       "agreeResourceProvider",
       "agreeResourceProvider(string):((uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -753,8 +751,8 @@ export class LilypadStorage extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<LilypadStorage__agreeResourceProviderResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -762,7 +760,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     dealId: string,
     members: LilypadStorage__ensureDealInputMembersStruct,
     timeouts: LilypadStorage__ensureDealInputTimeoutsStruct,
-    pricing: LilypadStorage__ensureDealInputPricingStruct
+    pricing: LilypadStorage__ensureDealInputPricingStruct,
   ): LilypadStorage__ensureDealResultValue0Struct {
     let result = super.call(
       "ensureDeal",
@@ -771,12 +769,12 @@ export class LilypadStorage extends ethereum.SmartContract {
         ethereum.Value.fromString(dealId),
         ethereum.Value.fromTuple(members),
         ethereum.Value.fromTuple(timeouts),
-        ethereum.Value.fromTuple(pricing)
-      ]
+        ethereum.Value.fromTuple(pricing),
+      ],
     );
 
     return changetype<LilypadStorage__ensureDealResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
@@ -784,7 +782,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     dealId: string,
     members: LilypadStorage__ensureDealInputMembersStruct,
     timeouts: LilypadStorage__ensureDealInputTimeoutsStruct,
-    pricing: LilypadStorage__ensureDealInputPricingStruct
+    pricing: LilypadStorage__ensureDealInputPricingStruct,
   ): ethereum.CallResult<LilypadStorage__ensureDealResultValue0Struct> {
     let result = super.tryCall(
       "ensureDeal",
@@ -793,8 +791,8 @@ export class LilypadStorage extends ethereum.SmartContract {
         ethereum.Value.fromString(dealId),
         ethereum.Value.fromTuple(members),
         ethereum.Value.fromTuple(timeouts),
-        ethereum.Value.fromTuple(pricing)
-      ]
+        ethereum.Value.fromTuple(pricing),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -802,8 +800,8 @@ export class LilypadStorage extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<LilypadStorage__ensureDealResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -811,21 +809,21 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.call(
       "getAgreement",
       "getAgreement(string):((uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
 
     return changetype<LilypadStorage__getAgreementResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getAgreement(
-    dealId: string
+    dealId: string,
   ): ethereum.CallResult<LilypadStorage__getAgreementResultValue0Struct> {
     let result = super.tryCall(
       "getAgreement",
       "getAgreement(string):((uint8,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -833,8 +831,8 @@ export class LilypadStorage extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<LilypadStorage__getAgreementResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -842,7 +840,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.call(
       "getControllerAddress",
       "getControllerAddress():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -852,7 +850,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.tryCall(
       "getControllerAddress",
       "getControllerAddress():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -865,28 +863,28 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.call(
       "getDeal",
       "getDeal(string):((string,(address,address,address,address[]),((uint256,uint256),(uint256,uint256),(uint256,uint256),(uint256,uint256)),(uint256,uint256,uint256,uint256)))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
 
     return changetype<LilypadStorage__getDealResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getDeal(
-    dealId: string
+    dealId: string,
   ): ethereum.CallResult<LilypadStorage__getDealResultValue0Struct> {
     let result = super.tryCall(
       "getDeal",
       "getDeal(string):((string,(address,address,address,address[]),((uint256,uint256),(uint256,uint256),(uint256,uint256),(uint256,uint256)),(uint256,uint256,uint256,uint256)))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<LilypadStorage__getDealResultValue0Struct>(value[0].toTuple())
+      changetype<LilypadStorage__getDealResultValue0Struct>(value[0].toTuple()),
     );
   }
 
@@ -894,7 +892,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.call(
       "getDealsForParty",
       "getDealsForParty(address):(string[])",
-      [ethereum.Value.fromAddress(party)]
+      [ethereum.Value.fromAddress(party)],
     );
 
     return result[0].toStringArray();
@@ -904,7 +902,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.tryCall(
       "getDealsForParty",
       "getDealsForParty(address):(string[])",
-      [ethereum.Value.fromAddress(party)]
+      [ethereum.Value.fromAddress(party)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -915,7 +913,7 @@ export class LilypadStorage extends ethereum.SmartContract {
 
   getJobCost(dealId: string): BigInt {
     let result = super.call("getJobCost", "getJobCost(string):(uint256)", [
-      ethereum.Value.fromString(dealId)
+      ethereum.Value.fromString(dealId),
     ]);
 
     return result[0].toBigInt();
@@ -923,7 +921,7 @@ export class LilypadStorage extends ethereum.SmartContract {
 
   try_getJobCost(dealId: string): ethereum.CallResult<BigInt> {
     let result = super.tryCall("getJobCost", "getJobCost(string):(uint256)", [
-      ethereum.Value.fromString(dealId)
+      ethereum.Value.fromString(dealId),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -936,21 +934,21 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.call(
       "getResult",
       "getResult(string):((string,string,string,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
 
     return changetype<LilypadStorage__getResultResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getResult(
-    dealId: string
+    dealId: string,
   ): ethereum.CallResult<LilypadStorage__getResultResultValue0Struct> {
     let result = super.tryCall(
       "getResult",
       "getResult(string):((string,string,string,uint256))",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -958,8 +956,8 @@ export class LilypadStorage extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<LilypadStorage__getResultResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -967,7 +965,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.call(
       "getResultsCollateral",
       "getResultsCollateral(string):(uint256)",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
 
     return result[0].toBigInt();
@@ -977,7 +975,7 @@ export class LilypadStorage extends ethereum.SmartContract {
     let result = super.tryCall(
       "getResultsCollateral",
       "getResultsCollateral(string):(uint256)",
-      [ethereum.Value.fromString(dealId)]
+      [ethereum.Value.fromString(dealId)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -988,7 +986,7 @@ export class LilypadStorage extends ethereum.SmartContract {
 
   hasDeal(dealId: string): boolean {
     let result = super.call("hasDeal", "hasDeal(string):(bool)", [
-      ethereum.Value.fromString(dealId)
+      ethereum.Value.fromString(dealId),
     ]);
 
     return result[0].toBoolean();
@@ -996,7 +994,7 @@ export class LilypadStorage extends ethereum.SmartContract {
 
   try_hasDeal(dealId: string): ethereum.CallResult<boolean> {
     let result = super.tryCall("hasDeal", "hasDeal(string):(bool)", [
-      ethereum.Value.fromString(dealId)
+      ethereum.Value.fromString(dealId),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1008,7 +1006,7 @@ export class LilypadStorage extends ethereum.SmartContract {
   isState(dealId: string, state: i32): boolean {
     let result = super.call("isState", "isState(string,uint8):(bool)", [
       ethereum.Value.fromString(dealId),
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(state))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(state)),
     ]);
 
     return result[0].toBoolean();
@@ -1017,7 +1015,7 @@ export class LilypadStorage extends ethereum.SmartContract {
   try_isState(dealId: string, state: i32): ethereum.CallResult<boolean> {
     let result = super.tryCall("isState", "isState(string,uint8):(bool)", [
       ethereum.Value.fromString(dealId),
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(state))
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(state)),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1115,7 +1113,7 @@ export class AddResultCall__Outputs {
 
   get value0(): AddResultCallValue0Struct {
     return changetype<AddResultCallValue0Struct>(
-      this._call.outputValues[0].value.toTuple()
+      this._call.outputValues[0].value.toTuple(),
     );
   }
 }
@@ -1169,7 +1167,7 @@ export class AgreeJobCreatorCall__Outputs {
 
   get value0(): AgreeJobCreatorCallValue0Struct {
     return changetype<AgreeJobCreatorCallValue0Struct>(
-      this._call.outputValues[0].value.toTuple()
+      this._call.outputValues[0].value.toTuple(),
     );
   }
 }
@@ -1263,7 +1261,7 @@ export class AgreeResourceProviderCall__Outputs {
 
   get value0(): AgreeResourceProviderCallValue0Struct {
     return changetype<AgreeResourceProviderCallValue0Struct>(
-      this._call.outputValues[0].value.toTuple()
+      this._call.outputValues[0].value.toTuple(),
     );
   }
 }
@@ -1405,19 +1403,19 @@ export class EnsureDealCall__Inputs {
 
   get members(): EnsureDealCallMembersStruct {
     return changetype<EnsureDealCallMembersStruct>(
-      this._call.inputValues[1].value.toTuple()
+      this._call.inputValues[1].value.toTuple(),
     );
   }
 
   get timeouts(): EnsureDealCallTimeoutsStruct {
     return changetype<EnsureDealCallTimeoutsStruct>(
-      this._call.inputValues[2].value.toTuple()
+      this._call.inputValues[2].value.toTuple(),
     );
   }
 
   get pricing(): EnsureDealCallPricingStruct {
     return changetype<EnsureDealCallPricingStruct>(
-      this._call.inputValues[3].value.toTuple()
+      this._call.inputValues[3].value.toTuple(),
     );
   }
 }
@@ -1431,7 +1429,7 @@ export class EnsureDealCall__Outputs {
 
   get value0(): EnsureDealCallValue0Struct {
     return changetype<EnsureDealCallValue0Struct>(
-      this._call.outputValues[0].value.toTuple()
+      this._call.outputValues[0].value.toTuple(),
     );
   }
 }
@@ -1461,19 +1459,19 @@ export class EnsureDealCallTimeoutsStruct extends ethereum.Tuple {
 
   get submitResults(): EnsureDealCallTimeoutsSubmitResultsStruct {
     return changetype<EnsureDealCallTimeoutsSubmitResultsStruct>(
-      this[1].toTuple()
+      this[1].toTuple(),
     );
   }
 
   get judgeResults(): EnsureDealCallTimeoutsJudgeResultsStruct {
     return changetype<EnsureDealCallTimeoutsJudgeResultsStruct>(
-      this[2].toTuple()
+      this[2].toTuple(),
     );
   }
 
   get mediateResults(): EnsureDealCallTimeoutsMediateResultsStruct {
     return changetype<EnsureDealCallTimeoutsMediateResultsStruct>(
-      this[3].toTuple()
+      this[3].toTuple(),
     );
   }
 }
@@ -1575,25 +1573,25 @@ export class EnsureDealCallValue0MembersStruct extends ethereum.Tuple {
 export class EnsureDealCallValue0TimeoutsStruct extends ethereum.Tuple {
   get agree(): EnsureDealCallValue0TimeoutsAgreeStruct {
     return changetype<EnsureDealCallValue0TimeoutsAgreeStruct>(
-      this[0].toTuple()
+      this[0].toTuple(),
     );
   }
 
   get submitResults(): EnsureDealCallValue0TimeoutsSubmitResultsStruct {
     return changetype<EnsureDealCallValue0TimeoutsSubmitResultsStruct>(
-      this[1].toTuple()
+      this[1].toTuple(),
     );
   }
 
   get judgeResults(): EnsureDealCallValue0TimeoutsJudgeResultsStruct {
     return changetype<EnsureDealCallValue0TimeoutsJudgeResultsStruct>(
-      this[2].toTuple()
+      this[2].toTuple(),
     );
   }
 
   get mediateResults(): EnsureDealCallValue0TimeoutsMediateResultsStruct {
     return changetype<EnsureDealCallValue0TimeoutsMediateResultsStruct>(
-      this[3].toTuple()
+      this[3].toTuple(),
     );
   }
 }
